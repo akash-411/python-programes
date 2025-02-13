@@ -1,0 +1,21 @@
+class Solution:
+    def gameOfLife(self, board: List[List[int]]) -> None:
+        """
+        Do not return anything, modify board in-place instead.
+        """
+        start = []
+        for row in board:
+            start.append(row.copy())
+
+        for i in range(0, len(board)):
+            for j in range(0, len(board[0])):
+                neighbors = 0
+                for x,y in {(1,1),(1,0),(1,-1),(0,1),(0,-1),(-1,-1),(-1,0),(-1,1)}:
+                    if not (0 <= i+x < len(board)) or not (0 <= j+y < len(board[0])): 
+                        continue
+                    if start[i+x][j+y] == 1:
+                        neighbors += 1
+                if not (2 <= neighbors <= 3) and board[i][j] == 1:
+                    board[i][j] = 0
+                elif neighbors == 3 and board[i][j] == 0:
+                    board[i][j] = 1
