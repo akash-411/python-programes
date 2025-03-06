@@ -1,0 +1,9 @@
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        last,ans,i={},0,0
+        for j, c in enumerate(s):
+            i=max(i,last.get(c,-1)+1)
+            ans=max(ans,j-i+1)
+            last[c]=j
+        return ans    
+        
