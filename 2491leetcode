@@ -1,0 +1,17 @@
+class Solution:
+    def dividePlayers(self, skill):
+
+        skill.sort()
+        
+        n = len(skill)
+        totalSkill = skill[0] + skill[-1] 
+        chemistrySum = 0
+
+  
+        for i in range(n // 2):
+  
+            if skill[i] + skill[n - i - 1] != totalSkill:
+                return -1  
+            chemistrySum += skill[i] * skill[n - i - 1]
+
+        return chemistrySum 
